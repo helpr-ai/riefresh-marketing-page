@@ -1,0 +1,407 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DemoForm from "../components/DemoForm.astro";
+import { partnerPricing } from "../data/pricing";
+---
+
+<Layout
+  title="RIEfresh partnertarieven"
+  description="Partnerprogramma voor adviesbureaus en arbodiensten. Per traject inkopen, zelf de eindprijs bepalen."
+  current="partners"
+  noindex={true}
+  showHeader={false}
+  footerIncludeAdviesbureaus={true}
+  footerIncludeHome={true}
+  footerIncludeKam={false}
+>
+  <!-- Mini header specifiek voor partnerpagina -->
+  <header class="partner-header">
+    <div class="container partner-header__inner">
+      <a href="/" aria-label="RIEfresh, naar de homepage" class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CFF26B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 11a8 8 0 0 0-14.9-3.9"></path>
+            <path d="M4 4v4h4"></path>
+            <path d="M4 13a8 8 0 0 0 14.9 3.9"></path>
+            <path d="M20 20v-4h-4"></path>
+          </svg>
+        </span>
+        <span class="brand__wordmark">RIE<span>fresh</span></span>
+      </a>
+      <nav aria-label="Partnermenu" class="partner-nav">
+        <a href="/adviesbureaus">← Voor adviesbureaus</a>
+        <a href="#kennismaking" class="btn btn-primary btn-sm">Plan een kennismaking</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <section class="container partner-intro">
+    <p class="pill">Partnerprogramma voor adviesbureaus en arbodiensten</p>
+    <h1 class="partner-intro__title">Partnertarieven en voorwaarden</h1>
+    <p class="partner-intro__lead">
+      Deze pagina is bedoeld voor bureaus die RIEfresh in hun eigen RI&amp;E-trajecten willen
+      inzetten. Je koopt per traject in, zonder abonnement, en bepaalt zelf de eindprijs voor
+      je klant.
+    </p>
+  </section>
+
+  <!-- Tarieven -->
+  <section aria-labelledby="tarieven" class="container section-tarieven">
+    <h2 id="tarieven" class="sr-only">Tarieven en rekenvoorbeeld</h2>
+    <div class="tarieven">
+      <div class="tarieven__table card">
+        <h3 class="tarieven__title">Bureautarieven per traject</h3>
+        <p class="tarieven__sub">Bedragen exclusief btw.</p>
+        <table>
+          <tbody>
+            <tr>
+              <th scope="row">
+                Kleine RI&amp;E <span>Tot en met 50 medewerkers, één locatie</span>
+              </th>
+              <td>{partnerPricing.kleineRie}</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Grote RI&amp;E <span>Meer dan 50 medewerkers</span>
+              </th>
+              <td>{partnerPricing.groteRie}</td>
+            </tr>
+            <tr>
+              <th scope="row">Extra locatie</th>
+              <td>{partnerPricing.extraLocatie}</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Jaarlijkse update <span>Per vestiging</span>
+              </th>
+              <td>{partnerPricing.jaarlijkseUpdate}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="tarieven__foot">
+          Deze tarieven zijn bewust scherp. Daar staat een vooraf afgesproken aantal trajecten
+          per jaar tegenover.
+        </p>
+      </div>
+      <div class="rekenvoorbeeld">
+        <h3 class="tarieven__title">Rekenvoorbeeld</h3>
+        <p class="rekenvoorbeeld__sub">
+          Eenvoudige RI&amp;E, laag risicoprofiel, uurtarief van €100 ter illustratie
+        </p>
+        <table class="reken-table">
+          <thead>
+            <tr>
+              <th scope="col">Per traject</th>
+              <th scope="col">Voorheen</th>
+              <th scope="col">Met RIEfresh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Adviseursuren</th>
+              <td>12</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <th scope="row">Uren à €100</th>
+              <td>€1.200</td>
+              <td>€500</td>
+            </tr>
+            <tr>
+              <th scope="row">Platform</th>
+              <td>€0</td>
+              <td>€245</td>
+            </tr>
+            <tr class="reken-table__total">
+              <th scope="row">Totaal</th>
+              <td>€1.200</td>
+              <td class="reken-table__win">€745</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="rekenvoorbeeld__foot">
+          Het verschil gaat naar een scherpere prijs, een hogere marge of vervolgadvies.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volume -->
+  <section aria-labelledby="volume" class="container section-volume">
+    <h2 id="volume" class="h2">Wat je als partner krijgt</h2>
+    <div class="volume">
+      <div class="volume__card">
+        <h3>Een volumeafspraak op maat</h3>
+        <p>
+          We spreken samen af hoeveel trajecten je per jaar via het platform doet. Dat hoeven
+          niet al je trajecten te zijn.
+        </p>
+      </div>
+      <div class="volume__card">
+        <h3>Kick-off met je adviseurs</h3>
+        <p>
+          Iedere adviseur voert zelf een AI-voicegesprek, en we richten samen je eerste klant
+          in.
+        </p>
+      </div>
+      <div class="volume__card">
+        <h3>Een terugkerend moment</h3>
+        <p>
+          De jaarlijkse update per vestiging geeft je elk jaar een aanleiding voor
+          vervolgadvies bij je klant.
+        </p>
+      </div>
+      <div class="volume__card">
+        <p class="chip--pill">In ontwikkeling</p>
+        <h3>In je eigen huisstijl</h3>
+        <p>Het rapport verschijnt onder de naam en in de huisstijl van je bureau.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kennismaking -->
+  <section id="kennismaking" aria-labelledby="kennismaking-titel" class="container demo-section">
+    <div class="demo">
+      <div class="demo__text">
+        <h2 id="kennismaking-titel" class="h2">Partner worden</h2>
+        <p class="demo__lead">
+          In een kennismaking van een half uur laten we het platform zien en stemmen we de
+          volumeafspraak af op je portefeuille.
+        </p>
+      </div>
+      <DemoForm
+        formName="demo-partner"
+        orgLabel="Bureau"
+        selectLabel="RI&E-trajecten per jaar, ongeveer"
+        selectName="volume"
+        options={[
+          { value: "Minder dan 25" },
+          { value: "25 tot 100" },
+          { value: "Meer dan 100" },
+        ]}
+        submitLabel="Plan een kennismaking"
+      />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Mini header */
+  .partner-header__inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--c-text);
+  }
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 23px;
+    letter-spacing: -0.02em;
+  }
+  .brand__wordmark span { color: var(--c-accent); }
+  .partner-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 26px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .partner-nav a:not(.btn) {
+    text-decoration: none;
+    color: var(--c-text);
+  }
+
+  /* Intro */
+  .partner-intro {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+  .partner-intro__title {
+    margin: 18px 0 0;
+    font-weight: 700;
+    font-size: clamp(38px, 4.8vw, 58px);
+    line-height: 1.05;
+    max-width: 860px;
+  }
+  .partner-intro__lead {
+    margin: 20px 0 0;
+    font-size: 19px;
+    color: var(--c-text-2);
+    max-width: 720px;
+  }
+
+  /* Tarieven */
+  .section-tarieven { padding-bottom: 40px; }
+  .tarieven {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .tarieven__table {
+    flex: 3 1 440px;
+    min-width: 0;
+    padding: 28px;
+  }
+  .tarieven__title {
+    margin: 0 0 4px;
+    font-family: var(--font-display);
+    font-size: 24px;
+  }
+  .tarieven__sub, .rekenvoorbeeld__sub {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: var(--c-text-2);
+  }
+  .tarieven table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  .tarieven th[scope="row"] {
+    text-align: left;
+    font-weight: 500;
+    padding: 14px 12px 14px 0;
+  }
+  .tarieven th[scope="row"] span {
+    display: block;
+    font-size: 14px;
+    color: var(--c-text-2);
+  }
+  .tarieven td {
+    text-align: right;
+    padding: 14px 0;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .tarieven tbody tr { border-bottom: 1px solid var(--c-surface-soft); }
+  .tarieven tbody tr:last-child { border-bottom: 0; }
+  .tarieven__foot {
+    margin: 16px 0 0;
+    font-size: 15px;
+    color: var(--c-text-2);
+  }
+
+  .rekenvoorbeeld {
+    flex: 2 1 320px;
+    min-width: 0;
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 22px;
+    padding: 28px;
+  }
+  .rekenvoorbeeld__sub { color: var(--c-text-dark); }
+  .reken-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .reken-table th[scope="col"] {
+    text-align: right;
+    font-weight: 600;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--c-text-dark);
+  }
+  .reken-table th[scope="col"]:first-child { text-align: left; }
+  .reken-table thead tr { border-bottom: 1px solid #3C6156; }
+  .reken-table th[scope="row"] {
+    text-align: left;
+    font-weight: 400;
+    padding: 10px 0;
+  }
+  .reken-table td {
+    text-align: right;
+    padding: 10px 0;
+  }
+  .reken-table tbody tr { border-bottom: 1px solid #3C6156; }
+  .reken-table tbody tr:last-child { border-bottom: 0; }
+  .reken-table__total th,
+  .reken-table__total td {
+    font-weight: 700;
+    padding: 12px 0;
+  }
+  .reken-table__win {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--c-lime);
+  }
+  .rekenvoorbeeld__foot {
+    margin: 16px 0 0;
+    font-size: 15px;
+    color: #E3ECE7;
+  }
+
+  /* Volume */
+  .section-volume { padding-top: 56px; padding-bottom: 40px; }
+  .h2 {
+    font-size: clamp(28px, 3.2vw, 38px);
+    line-height: 1.12;
+    margin: 0;
+  }
+  .volume {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .volume__card {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .volume__card h3 { font-size: 19px; margin: 0 0 8px; }
+  .volume__card p { color: var(--c-text-2); margin: 0; }
+  .chip--pill {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--c-primary);
+    background: var(--c-lime);
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin: 0 0 8px;
+  }
+
+  /* Demo */
+  .demo-section { padding-top: 56px; padding-bottom: 96px; }
+  .demo {
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 28px;
+    padding: clamp(28px, 5vw, 64px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  .demo__text { flex: 1 1 380px; min-width: 0; }
+  .demo__lead {
+    margin: 16px 0 0;
+    font-size: 18px;
+    color: var(--c-text-dark);
+  }
+</style>

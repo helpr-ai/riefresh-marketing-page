@@ -1,0 +1,88 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  current?: "home" | "kam" | "adviesbureaus" | "partners";
+  noindex?: boolean;
+  canonical?: string;
+  jsonLd?: unknown[];
+  showHeader?: boolean;
+  showFooter?: boolean;
+  footerIncludeHome?: boolean;
+  footerIncludeKam?: boolean;
+  footerIncludeAdviesbureaus?: boolean;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  current,
+  noindex = false,
+  canonical,
+  jsonLd = [],
+  showHeader = true,
+  showFooter = true,
+  footerIncludeHome = false,
+  footerIncludeKam = true,
+  footerIncludeAdviesbureaus = true,
+  ogImage = "/og-default.png",
+} = Astro.props;
+
+const siteUrl = "https://riefresh.nl";
+const pageUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const absoluteOg = new URL(ogImage, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RIEfresh" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={absoluteOg} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    <!-- TODO: vervang door echte Plausible-instance of weggooi als jullie andere cookieloze analytics kiezen -->
+    <!-- <script defer data-domain="riefresh.nl" src="https://plausible.io/js/script.js"></script> -->
+
+    {
+      jsonLd.map((node) => (
+        <script type="application/ld+json" set:html={JSON.stringify(node)} />
+      ))
+    }
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Direct naar de inhoud</a>
+    {showHeader && <Header current={current} />}
+    <main id="main">
+      <slot />
+    </main>
+    {
+      showFooter && (
+        <Footer
+          includeHome={footerIncludeHome}
+          includeKam={footerIncludeKam}
+          includeAdviesbureaus={footerIncludeAdviesbureaus}
+        />
+      )
+    }
+  </body>
+</html>

@@ -1,0 +1,611 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FaqItem from "../components/FaqItem.astro";
+import DemoForm from "../components/DemoForm.astro";
+
+const faqs = [
+  {
+    q: "Neemt dit mijn werk over?",
+    a: "Het uitvragen en uitwerken. Scope, oordeel, rondgang, toetsing en advies blijven bij jou.",
+  },
+  {
+    q: "Verzint de AI geen risico’s?",
+    a: "Bevindingen komen alleen uit wat gezegd is, en per bevinding open je de bronnen. Is een onderwerp niet besproken, dan staat er dat er onvoldoende informatie is.",
+  },
+  {
+    q: "Doen klanten de AI-voicegesprekken echt?",
+    a: "Bij Microtherm zijn 42 AI-voicegesprekken afgerond. In de Safety Culture Ladder-trajecten van Enexis, met dezelfde AI-interviewer, was 90% van de deelnemers zeer positief en zou 85% opnieuw meedoen.",
+  },
+  {
+    q: "Wat als de externe toetsing vervalt?",
+    a: "Dan verschuift de waarde van de adviseur nog verder naar het oordeel, de rondgang en het advies. Precies daar maakt RIEfresh tijd voor vrij.",
+  },
+  {
+    q: "Kan ik meerdere organisaties en vestigingen in één RI&E opnemen?",
+    a: "Ja. Een klant bestaat uit organisaties en vestigingen. Het beleid kies je concernbreed of per RI&E; de locatiesectie volgt per vestiging.",
+  },
+  {
+    q: "Welke output krijg ik?",
+    a: "Een rapport in Word, de risico-inventarisatie in Excel met één rij per onderwerp, en het plan van aanpak in Excel met één rij per maatregel.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title="RIEfresh voor adviesbureaus — minder uren per RI&E"
+  description="Eenvoudige RI&E’s verlies je op prijs. Met RIEfresh voeren de kennisdragers van je klant AI-voicegesprekken en jij besteedt je tijd aan beoordelen, rondgang en toetsing."
+  current="adviesbureaus"
+  jsonLd={jsonLd}
+  footerIncludeAdviesbureaus={false}
+  footerIncludeHome={true}
+>
+  <!-- Hero -->
+  <section class="hero container">
+    <div class="hero__text">
+      <p class="pill">Voor adviesbureaus en arbodiensten</p>
+      <h1 class="hero__title">Minder uren per RI&amp;E. Meer ruimte voor het oordeel.</h1>
+      <p class="hero__lead">
+        Eenvoudige RI&amp;E’s verlies je op prijs aan doe-het-zelfplatforms, terwijl je uren
+        opgaan aan uitvragen en uitwerken. Met RIEfresh voeren de kennisdragers van je klant
+        AI-voicegesprekken. Jij begint bij een uitgewerkte inventarisatie en besteedt je tijd
+        aan beoordelen, rondgang, toetsing en vervolgadvies.
+      </p>
+      <div class="hero__cta">
+        <a href="#demo" class="btn btn-primary">Plan een demo</a>
+        <a href="#samenwerken" class="btn btn-secondary">Zo werk je samen</a>
+      </div>
+    </div>
+    <div class="hero__side card">
+      <p class="hero-card__kicker">Eenvoudige kantoor-RI&amp;E, laag risicoprofiel</p>
+      <p class="hero-card__label">Voorheen</p>
+      <div class="bar-row">
+        <div class="bar bar--grey"></div>
+        <span class="bar__val">± 12 uur</span>
+      </div>
+      <p class="hero-card__label">Met RIEfresh</p>
+      <div class="bar-row">
+        <div class="bar bar--split">
+          <div class="bar__seg bar__seg--1"></div>
+          <div class="bar__seg bar__seg--2"></div>
+          <div class="bar__seg bar__seg--3"></div>
+        </div>
+        <span class="bar__val">± 5 uur</span>
+      </div>
+      <ul class="bar-legend">
+        <li><span class="dot dot--1"></span>1 uur scope en context</li>
+        <li><span class="dot dot--2"></span>2 uur beoordelen op afstand</li>
+        <li><span class="dot dot--3"></span>2 uur rondgang</li>
+      </ul>
+      <p class="hero-card__foot">
+        Middel risico: circa 9 uur. Hoog risico of veel locaties: maatwerk. Per 100 trajecten
+        scheelt het ongeveer 700 adviseursuren.
+      </p>
+      <p class="caption">
+        Op basis van het rekenmodel van een landelijk adviesbureau dat met het platform werkt
+        (oktober 2026).
+      </p>
+    </div>
+  </section>
+
+  <!-- Herkenbaar -->
+  <section aria-labelledby="herkenbaar" class="section-dark">
+    <div class="container herkenbaar">
+      <h2 id="herkenbaar" class="h2">De RI&amp;E-markt verandert. Je uren niet.</h2>
+      <div class="herkenbaar__grid">
+        <div class="herkenbaar__card">
+          <h3>Prijsdruk bij eenvoudige trajecten</h3>
+          <p>
+            Online platforms bieden een RI&amp;E voor een fractie van je tarief. Bij een
+            kantoor of kleine werkplaats is het verschil lastig uit te leggen.
+          </p>
+        </div>
+        <div class="herkenbaar__card">
+          <h3>De uren zitten in uitvragen</h3>
+          <p>
+            Gesprekken plannen, notities uitwerken, het rapport opbouwen. Het werk waar je
+            vakmanschap het minst in zit, kost de meeste tijd.
+          </p>
+        </div>
+        <div class="herkenbaar__card">
+          <h3>Elke veiligheidskundige telt</h3>
+          <p>
+            Uren die vastzitten in eenvoudige trajecten, kun je niet besteden aan complexe
+            klanten of aan advies dat wél het verschil maakt.
+          </p>
+        </div>
+        <div class="herkenbaar__card">
+          <h3>De toetsing staat ter discussie</h3>
+          <p>
+            Op 13 oktober 2026 nam de Tweede Kamer vier moties aan om de RI&amp;E te
+            vereenvoudigen, onder meer door te kijken naar het schrappen van de externe
+            toetsing. Voorlopig blijven de huidige regels gelden.
+          </p>
+        </div>
+      </div>
+      <p class="sources">
+        Bron moties: Koninklijke Horeca Nederland, “Tweede Kamer wil RI&amp;E eenvoudiger
+        maken”.
+      </p>
+    </div>
+  </section>
+
+  <!-- Verdeling -->
+  <section aria-labelledby="verdeling" class="container section-lg">
+    <p class="eyebrow">De verdeling</p>
+    <h2 id="verdeling" class="h2 h2--max820">
+      Het platform doet het uitvragen. Het vak blijft bij jou.
+    </h2>
+    <div class="grid split">
+      <div class="split__card">
+        <h3>Wat het platform doet</h3>
+        <ul>
+          <li>
+            Onderwerpen voorstellen op basis van branche, activiteiten en bijzondere
+            omstandigheden
+          </li>
+          <li>
+            De AI-voicegesprekken voeren met iedere kennisdrager, inclusief uitnodigingen en
+            herinneringen
+          </li>
+          <li>
+            Antwoorden samenvoegen tot één bevinding per onderwerp, met Fine &amp;
+            Kinney-score en bronnen
+          </li>
+          <li>Tegenstrijdigheden en onvoldoende besproken onderwerpen markeren</li>
+          <li>
+            Het plan van aanpak voorbereiden, het rapport opmaken in Word en exports leveren
+            in Excel
+          </li>
+        </ul>
+      </div>
+      <div class="split__card split__card--dark">
+        <h3>Wat bij jou blijft</h3>
+        <ul>
+          <li>Scope en context vastleggen met de klant</li>
+          <li>De onderwerpenlijst vaststellen</li>
+          <li>Bevindingen, scores en maatregelen beoordelen en bijstellen</li>
+          <li>De rondgang op locatie, nu gericht op wat verder uitgediept moet worden</li>
+          <li>Toetsing, ondertekening en het vervolgadvies</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Samenwerken -->
+  <section id="samenwerken" aria-labelledby="samenwerken-titel" class="container section">
+    <p class="eyebrow">Samenwerken</p>
+    <h2 id="samenwerken-titel" class="h2 h2--max820">
+      Betalen per traject. Zelf de eindprijs bepalen.
+    </h2>
+    <div class="grid samen">
+      <div class="samen__card">
+        <h3>Per traject, geen abonnement</h3>
+        <p>Je rekent per RI&amp;E af. De eindprijs, de rondgang en de toetsing bepaal je zelf.</p>
+      </div>
+      <div class="samen__card">
+        <h3>Scherp bij een volumeafspraak</h3>
+        <p>
+          Spreek je vooraf een aantal trajecten per jaar af, dan geldt het scherpste tarief.
+          Dat hoeven niet al je trajecten te zijn.
+        </p>
+      </div>
+      <div class="samen__card">
+        <h3>Een terugkerend moment</h3>
+        <p>
+          De jaarlijkse update is een nieuwe ronde AI-voicegesprekken per vestiging, en een
+          natuurlijke aanleiding om met je klant om tafel te gaan.
+        </p>
+      </div>
+      <div class="samen__card">
+        <p class="chip chip--pill">In ontwikkeling</p>
+        <h3>In je eigen huisstijl</h3>
+        <p>Het rapport verschijnt onder de naam en in de huisstijl van je bureau.</p>
+      </div>
+    </div>
+    <div class="partner-cta">
+      <p>
+        De bureautarieven, een rekenvoorbeeld en de voorwaarden voor de volumeafspraak staan
+        op de partnerpagina.
+      </p>
+      <a href="/partners" class="btn btn-primary btn-sm">Bekijk de partnertarieven</a>
+    </div>
+  </section>
+
+  <!-- Bureaus -->
+  <section aria-labelledby="bureaus" class="container section bureaus">
+    <h2 id="bureaus" class="h2 bureaus__title">Bureaus die ermee werken</h2>
+    <figure class="quote-dark">
+      <blockquote>
+        “De eerste klant was al binnen 2 weken akkoord, het signaal dat we op de juiste weg
+        zitten en onze klanten deze innovatieve methode zonder twijfel omarmen!”
+      </blockquote>
+      <figcaption>
+        <strong>Steven Zwarts</strong>, manager Advies &amp; Opleidingen,
+        CertificeringsAdvies Nederland
+      </figcaption>
+    </figure>
+    <div class="bureaus__side">
+      <div class="card bureaus__card">
+        <h3>CertificeringsAdvies Nederland</h3>
+        <p>
+          Biedt de RI&amp;E via het platform sinds november 2026 standaard aan in de eigen
+          RI&amp;E-trajecten.
+        </p>
+      </div>
+      <div class="card bureaus__card">
+        <h3>Van Houten &amp; Partners</h3>
+        <p>Denkt mee in de ontwikkeling van de RI&amp;E-module.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Starten -->
+  <section aria-labelledby="starten" class="container section">
+    <p class="eyebrow">Starten</p>
+    <h2 id="starten" class="h2">Van kennismaking tot eerste traject</h2>
+    <ol class="startpath">
+      <li>
+        <p class="num">1</p>
+        <h3>Demo</h3>
+        <p>Een half uur door het platform, met een RI&amp;E zoals je die in je praktijk tegenkomt.</p>
+      </li>
+      <li>
+        <p class="num">2</p>
+        <h3>Kick-off met je team</h3>
+        <p>Iedere adviseur voert zelf een AI-voicegesprek. Zo weet je wat je klant ervaart.</p>
+      </li>
+      <li>
+        <p class="num">3</p>
+        <h3>Eerste klant inrichten</h3>
+        <p>Samen zetten we het eerste traject op, van klantprofiel tot uitnodigingen.</p>
+      </li>
+      <li>
+        <p class="num">4</p>
+        <h3>Afspraak over volume</h3>
+        <p>Na het eerste traject leggen we vast hoeveel trajecten je per jaar via het platform doet.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- FAQ -->
+  <section id="vragen" aria-labelledby="vragen-titel" class="container section faq">
+    <div class="faq__intro">
+      <h2 id="vragen-titel" class="h2">Wat kritische adviseurs vragen</h2>
+    </div>
+    <div class="faq__list">
+      {faqs.map((f) => <FaqItem question={f.q}><p>{f.a}</p></FaqItem>)}
+    </div>
+  </section>
+
+  <!-- Demo -->
+  <section id="demo" aria-labelledby="demo-titel" class="container demo-section">
+    <div class="demo">
+      <div class="demo__text">
+        <h2 id="demo-titel" class="h2">Reken het door met je eigen trajecten</h2>
+        <p class="demo__lead">
+          In de demo leggen we het platform naast een RI&amp;E uit je eigen portefeuille, en
+          rekenen we uit wat het je per traject oplevert.
+        </p>
+      </div>
+      <DemoForm
+        formName="demo-adviesbureau"
+        orgLabel="Bureau"
+        selectLabel="RI&E-trajecten per jaar, ongeveer"
+        selectName="volume"
+        options={[
+          { value: "Minder dan 25" },
+          { value: "25 tot 100" },
+          { value: "Meer dan 100" },
+        ]}
+      />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: 48px var(--pad-x) 88px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero__text { flex: 1 1 500px; min-width: 0; }
+  .hero__title {
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 1.04;
+    font-weight: 700;
+    margin: 18px 0 0;
+  }
+  .hero__lead {
+    margin: 24px 0 0;
+    font-size: 19px;
+    color: var(--c-text-2);
+    max-width: 580px;
+  }
+  .hero__cta {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero__side {
+    flex: 1 1 420px;
+    min-width: 0;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: var(--shadow-card);
+  }
+  .hero-card__kicker { font-size: 14px; color: var(--c-text-2); margin: 0; }
+  .hero-card__label {
+    margin: 22px 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar {
+    flex: 1 1 auto;
+    height: 18px;
+    border-radius: 6px;
+  }
+  .bar--grey { background: var(--c-border-strong); }
+  .bar--split {
+    width: 41.7%;
+    display: flex;
+    gap: 3px;
+    background: transparent;
+  }
+  .bar__seg {
+    height: 18px;
+  }
+  .bar__seg--1 { flex: 1; background: var(--c-primary); border-radius: 6px 0 0 6px; }
+  .bar__seg--2 { flex: 2; background: var(--c-accent); }
+  .bar__seg--3 { flex: 2; background: var(--c-lime); border-radius: 0 6px 6px 0; }
+  .bar__val {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    width: 92px;
+    text-align: right;
+  }
+  .bar-legend {
+    margin: 18px 0 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-size: 14px;
+    color: var(--c-text-2);
+  }
+  .bar-legend li { display: flex; align-items: center; gap: 8px; }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .dot--1 { background: var(--c-primary); }
+  .dot--2 { background: var(--c-accent); }
+  .dot--3 { background: var(--c-lime); border: 1px solid #A9C24F; }
+  .hero-card__foot {
+    margin: 22px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--c-border);
+    font-size: 14px;
+    color: var(--c-text-2);
+  }
+  .caption {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: #5C6862;
+  }
+
+  /* Herkenbaar */
+  .herkenbaar { padding: 80px var(--pad-x); }
+  .h2 {
+    font-size: clamp(30px, 3.6vw, 44px);
+    margin-top: 10px;
+    max-width: 760px;
+  }
+  .h2--max820 { max-width: 820px; }
+  .herkenbaar__grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .herkenbaar__card {
+    border-top: 2px solid var(--c-lime);
+    padding-top: 18px;
+  }
+  .herkenbaar__card h3 { font-size: 20px; margin: 0 0 8px; }
+  .herkenbaar__card p { color: var(--c-text-dark); }
+  .sources {
+    margin: 36px 0 0;
+    font-size: 13px;
+    color: #B5C7BF;
+  }
+
+  /* Split */
+  .split {
+    margin-top: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+  .split__card {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 22px;
+    padding: 30px;
+  }
+  .split__card h3 {
+    font-size: 24px;
+    margin: 0 0 16px;
+  }
+  .split__card ul {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--c-text-2);
+  }
+  .split__card--dark {
+    background: var(--c-primary);
+    color: #fff;
+    border-color: transparent;
+  }
+  .split__card--dark ul { color: #E3ECE7; }
+
+  /* Samenwerken */
+  .samen {
+    margin-top: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .samen__card {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .samen__card h3 { font-size: 19px; margin: 0 0 8px; }
+  .samen__card p { color: var(--c-text-2); margin: 0; }
+  .chip--pill {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--c-primary);
+    background: var(--c-lime);
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin: 0 0 8px;
+  }
+  .partner-cta {
+    margin-top: 16px;
+    background: var(--c-bg-soft);
+    border-radius: 18px;
+    padding: 22px 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .partner-cta p { margin: 0; font-size: 17px; max-width: 700px; }
+
+  /* Bureaus */
+  .bureaus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .bureaus__title { flex: 1 1 100%; margin: 0 0 12px; }
+  .quote-dark {
+    flex: 2 1 520px;
+    min-width: 0;
+    margin: 0;
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 22px;
+    padding: 36px;
+  }
+  .quote-dark blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.35;
+    font-weight: 500;
+  }
+  .quote-dark figcaption {
+    margin-top: 18px;
+    font-size: 15px;
+    color: var(--c-text-dark);
+  }
+  .quote-dark figcaption strong { color: #fff; }
+  .bureaus__side {
+    flex: 1 1 320px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .bureaus__card { padding: 24px; }
+  .bureaus__card h3 { font-size: 18px; margin: 0 0 6px; }
+  .bureaus__card p { color: var(--c-text-2); margin: 0; }
+
+  /* Startpath */
+  .startpath {
+    list-style: none;
+    margin: 36px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .startpath li {
+    border-top: 2px solid var(--c-primary);
+    padding-top: 16px;
+  }
+  .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--c-accent);
+    margin: 0;
+  }
+  .startpath h3 { font-size: 19px; margin: 4px 0 6px; }
+  .startpath p { color: var(--c-text-2); margin: 0; }
+
+  /* FAQ */
+  .faq {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  .faq__intro { flex: 1 1 300px; min-width: 0; }
+  .faq__list {
+    flex: 2 1 560px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Demo */
+  .demo-section { padding-top: 72px; padding-bottom: 96px; }
+  .demo {
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 28px;
+    padding: clamp(28px, 5vw, 64px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  .demo__text { flex: 1 1 380px; min-width: 0; }
+  .demo__lead {
+    margin: 16px 0 0;
+    font-size: 18px;
+    color: var(--c-text-dark);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px var(--pad-x) 56px; gap: 32px; }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  question: string;
+}
+const { question } = Astro.props;
+---
+
+<details class="faq-item">
+  <summary>
+    <span>{question}</span>
+    <span class="faq-item__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"></path>
+      </svg>
+    </span>
+  </summary>
+  <div class="faq-item__body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .faq-item {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 18px 22px;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .faq-item__icon {
+    flex: 0 0 auto;
+    color: var(--c-accent);
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] .faq-item__icon {
+    transform: rotate(180deg);
+  }
+  .faq-item__body {
+    color: var(--c-text-2);
+  }
+  .faq-item__body :global(p) {
+    margin: 12px 0 0;
+  }
+</style>

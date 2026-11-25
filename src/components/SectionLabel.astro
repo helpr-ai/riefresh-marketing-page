@@ -1,0 +1,9 @@
+---
+interface Props {
+  as?: "p" | "h2";
+}
+const { as = "p" } = Astro.props;
+const Tag = as;
+---
+
+<Tag class="eyebrow"><slot /></Tag>

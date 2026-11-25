@@ -1,0 +1,70 @@
+---
+interface SelectOption {
+  value: string;
+}
+interface Props {
+  formName: string;
+  orgLabel?: string;
+  selectLabel: string;
+  selectName: string;
+  options: SelectOption[];
+  submitLabel?: string;
+}
+
+const {
+  formName,
+  orgLabel = "Organisatie",
+  selectLabel,
+  selectName,
+  options,
+  submitLabel = "Plan een demo",
+} = Astro.props;
+---
+
+<form
+  class="form-dark"
+  name={formName}
+  method="POST"
+  action="/bedankt"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  aria-label="Demo aanvragen"
+>
+  <input type="hidden" name="form-name" value={formName} />
+  <p class="hp-field">
+    <label>Laat dit veld leeg<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <label>
+    Naam
+    <input type="text" name="naam" autocomplete="name" required />
+  </label>
+  <label>
+    {orgLabel}
+    <input type="text" name="organisatie" autocomplete="organization" required />
+  </label>
+  <label>
+    E-mailadres
+    <input type="email" name="email" autocomplete="email" required />
+  </label>
+  <label>
+    {selectLabel}
+    <select name={selectName} required>
+      {options.map((o) => <option value={o.value}>{o.value}</option>)}
+    </select>
+  </label>
+  <button type="submit" class="btn btn-lime">{submitLabel}</button>
+</form>
+
+<style>
+  form {
+    flex: 1 1 380px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  button[type="submit"] {
+    margin-top: 6px;
+  }
+</style>

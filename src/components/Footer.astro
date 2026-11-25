@@ -1,0 +1,57 @@
+---
+interface Props {
+  includeKam?: boolean;
+  includeAdviesbureaus?: boolean;
+  includeHome?: boolean;
+}
+const { includeKam = true, includeAdviesbureaus = true, includeHome = false } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__legal">
+      <strong>RIEfresh</strong> is een product van Helpr.ai · © 2026
+    </p>
+    <nav aria-label="Voettekst" class="site-footer__nav">
+      {includeHome && <a href="/">Home</a>}
+      {includeAdviesbureaus && <a href="/adviesbureaus">Voor adviesbureaus</a>}
+      {includeKam && <a href="/kam-managers">Voor KAM-managers</a>}
+      <a href="/privacy">Privacy</a>
+      <a href="/#demo">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--c-border);
+  }
+  .site-footer__inner {
+    padding-top: 32px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--c-text-2);
+  }
+  .site-footer__legal {
+    margin: 0;
+  }
+  .site-footer__legal strong {
+    color: var(--c-text);
+  }
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .site-footer__nav a {
+    color: var(--c-text-2);
+    text-decoration: none;
+  }
+  .site-footer__nav a:hover {
+    color: var(--c-accent);
+  }
+</style>

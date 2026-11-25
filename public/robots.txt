@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /partners
+Disallow: /bedankt
+
+Sitemap: https://riefresh.nl/sitemap-index.xml

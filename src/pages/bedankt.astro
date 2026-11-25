@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Bedankt — RIEfresh"
+  description="Bedankt voor je bericht. We nemen binnen een werkdag contact op."
+  noindex={true}
+  footerIncludeHome={true}
+>
+  <section class="section container">
+    <p class="eyebrow">Ontvangen</p>
+    <h1 class="thanks__title">Bedankt. We nemen snel contact op.</h1>
+    <p class="thanks__body">
+      We hebben je bericht binnen en reageren binnen een werkdag. Ondertussen kun je
+      <a href="/">terug naar de homepage</a> of
+      <a href="/kam-managers">lezen hoe het werkt voor KAM-managers</a>.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .thanks__title {
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 10px 0 20px;
+    max-width: 760px;
+  }
+  .thanks__body {
+    font-size: 19px;
+    color: var(--c-text-2);
+    max-width: 640px;
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+interface Props {
+  current?: "home" | "kam" | "adviesbureaus" | "partners";
+}
+const { current } = Astro.props;
+
+const navItems = [
+  { href: "/#hoe", label: "Hoe het werkt", key: "hoe" },
+  { href: "/kam-managers", label: "Voor KAM-managers", key: "kam" },
+  { href: "/adviesbureaus", label: "Voor adviesbureaus", key: "adviesbureaus" },
+  { href: "/#vragen", label: "Vragen", key: "vragen" },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" aria-label="RIEfresh, naar de homepage" class="brand">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CFF26B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 11a8 8 0 0 0-14.9-3.9"></path>
+          <path d="M4 4v4h4"></path>
+          <path d="M4 13a8 8 0 0 0 14.9 3.9"></path>
+          <path d="M20 20v-4h-4"></path>
+        </svg>
+      </span>
+      <span class="brand__wordmark">RIE<span>fresh</span></span>
+    </a>
+    <nav aria-label="Hoofdmenu" class="site-nav">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={current === item.key ? "page" : undefined}
+            class:list={["site-nav__link", current === item.key && "is-current"]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href="/#demo" class="btn btn-primary btn-sm">Plan een demo</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 10;
+  }
+  .site-header__inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--c-text);
+  }
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 23px;
+    letter-spacing: -0.02em;
+  }
+  .brand__wordmark span {
+    color: var(--c-accent);
+  }
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 26px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .site-nav__link {
+    text-decoration: none;
+    color: var(--c-text);
+  }
+  .site-nav__link:hover {
+    color: var(--c-accent);
+  }
+  .site-nav__link.is-current {
+    color: var(--c-accent);
+    font-weight: 700;
+  }
+</style>
